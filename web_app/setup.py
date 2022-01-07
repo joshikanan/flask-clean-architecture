@@ -13,6 +13,7 @@ setup(
         "sqlalchemy",
         "main",
         "tasks",
+        "tasks_infrastructure"
 
     ],
     extras_require={"dev": ["pytest"]},
