@@ -7,9 +7,8 @@ from sqlalchemy.orm import Session
 
 from main import bootstrap_app
 from main.modules import RequestScope
-
-
-from web_app.blueprints.tasks_blueprints import tasks_blueprint
+from tasks_infrastructure import TasksInfrastructure
+from web_app.blueprints.tasks_blueprints import tasks_blueprint, TasksWeb
 
 
 def create_app(settings_override: Optional[dict] = None) -> Flask:
@@ -31,7 +30,7 @@ def create_app(settings_override: Optional[dict] = None) -> Flask:
         app.config[key] = value
 
     app_context = bootstrap_app()
-    FlaskInjector(app, modules=[], injector=app_context.injector)
+    FlaskInjector(app, modules=[TasksInfrastructure()], injector=app_context.injector)
     app.injector = app_context.injector
 
     @app.before_request

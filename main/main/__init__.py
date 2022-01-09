@@ -3,12 +3,11 @@ from dataclasses import dataclass
 
 import dotenv
 import injector
-from tasks.domain.entities.task_entity import Task
 from sqlalchemy import MetaData
-from main.modules import Db
 from sqlalchemy.engine import Engine, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 
+from main.modules import Db
 
 metadata = MetaData()
 Base = declarative_base(metadata=metadata)
@@ -46,7 +45,7 @@ def _setup_dependency_injection(engine: Engine) -> injector.Injector:
 
 
 def _create_db_schema(engine: Engine) -> None:
-    # Models has to be imported for metadata.create_all to discover them
+    # Models have to be imported for metadata.create_all to discover them
     from tasks_infrastructure import tasks  # noqa
 
     # TODO: Use migrations for that

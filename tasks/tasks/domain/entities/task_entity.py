@@ -13,7 +13,6 @@ class Task:
     @classmethod
     def create(cls, id: TaskId, title: str, details: str) -> "Task":
         task = Task(id, title, details)
-        # auction._record_event(AuctionBegan(id, starting_price, title)) Unable to understand : TBD
         return task
 
     def __str__(self) -> str:

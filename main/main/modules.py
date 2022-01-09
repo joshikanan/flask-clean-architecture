@@ -6,6 +6,7 @@ from injector import Provider, T
 from sqlalchemy.engine import Connection, Engine
 from sqlalchemy.orm import Session
 
+
 class RequestScope(injector.Scope):
     REGISTRY_KEY = "RequestScopeRegistry"
 

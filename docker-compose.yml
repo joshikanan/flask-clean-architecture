@@ -3,11 +3,11 @@ version: '3.1'
 services:
   app:
     build: .
-#    image: sunrise_diamonds_app
+    #    image: sunrise_diamonds_app
     ports:
       - "5000:5000"
     environment:
-      DB_DSN: postgresql+psycopg2://postgres:cleanarchitecture@database/sunrise
+      DB_DSN: postgresql://postgres:12345@localhost/sunrise
     depends_on:
       - database
   database:

@@ -10,7 +10,7 @@ class TaskDto:
     details: str
 
 
-class GetTasks(abc.ABC):
+class GetListOfTasks(abc.ABC):
     @abc.abstractmethod
     def query(self) -> List[TaskDto]:
         pass

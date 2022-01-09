@@ -18,6 +18,5 @@ class CreateTask:
 
     def execute(self, input_dto: TaskInputDto) -> None:
         # add validations if any
-
         task_data = Task.create(input_dto.task_id, input_dto.title, input_dto.details)
         self.task_repo.save(task_data)

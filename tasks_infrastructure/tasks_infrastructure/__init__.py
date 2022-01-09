@@ -1,30 +1,21 @@
 import injector
-from auctions import AuctionsRepository, GetActiveAuctions, GetSingleAuction
-from auctions_infrastructure.queries import SqlGetActiveAuctions, SqlGetSingleAuction
-from auctions_infrastructure.repositories import SqlAlchemyAuctionsRepo
-from foundation.events import EventBus
 from sqlalchemy.engine import Connection
 
+from tasks.application.queries.tasks_queries import GetListOfTasks
 from tasks_infrastructure.models import tasks
+from tasks_infrastructure.queries.tasks_queries import SqlGetListOfTasks
+from tasks_infrastructure.repositories.task_repo import TasksRepository
 
 __all__ = [
     # module
-    "AuctionsInfrastructure",
+    "TasksInfrastructure",
     # models
     "tasks",
 
 ]
 
 
-class AuctionsInfrastructure(injector.Module):
+class TasksInfrastructure(injector.Module):
     @injector.provider
-    def get_active_auctions(self, conn: Connection) -> GetActiveAuctions:
-        return SqlGetActiveAuctions(conn)
-
-    @injector.provider
-    def get_single_auction(self, conn: Connection) -> GetSingleAuction:
-        return SqlGetSingleAuction(conn)
-
-    @injector.provider
-    def auctions_repo(self, conn: Connection, event_bus: EventBus) -> AuctionsRepository:
-        return SqlAlchemyAuctionsRepo(conn, event_bus)
+    def get_tasks(self, conn: Connection) -> GetListOfTasks:
+        return SqlGetListOfTasks(conn)
