@@ -16,7 +16,7 @@ class TasksWeb(injector.Module):
         return None
 
 
-@tasks_blueprint.route("")
+@tasks_blueprint.route("/")
 def task_list(query: GetListOfTasks) -> Response:
     return make_response(jsonify(query.query()))
 

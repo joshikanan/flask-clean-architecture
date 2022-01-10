@@ -8,6 +8,8 @@ from sqlalchemy.engine import Engine, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 
 from main.modules import Db
+from tasks import Tasks
+from tasks_infrastructure import TasksInfrastructure
 
 metadata = MetaData()
 Base = declarative_base(metadata=metadata)
@@ -39,6 +41,8 @@ def _setup_dependency_injection(engine: Engine) -> injector.Injector:
     return injector.Injector(
         [
             Db(engine),
+            Tasks(),
+            TasksInfrastructure()
         ],
         auto_bind=False,
     )
